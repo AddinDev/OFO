@@ -15,6 +15,7 @@
 		04A47EAE266121CE00983A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A47EAC266121CE00983A1C /* LaunchScreen.storyboard */; };
 		04A47EB9266121CF00983A1C /* OFOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47EB8266121CF00983A1C /* OFOTests.swift */; };
 		04A47EC4266121CF00983A1C /* OFOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47EC3266121CF00983A1C /* OFOUITests.swift */; };
+		04A47ED82661233D00983A1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47ED72661233D00983A1C /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		04A47EBF266121CF00983A1C /* OFOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A47EC3266121CF00983A1C /* OFOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFOUITests.swift; sourceTree = "<group>"; };
 		04A47EC5266121CF00983A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04A47ED72661233D00983A1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,10 @@
 		04A47EA0266121CD00983A1C /* OFO */ = {
 			isa = PBXGroup;
 			children = (
-				04A47EA1266121CD00983A1C /* AppDelegate.swift */,
-				04A47EA3266121CD00983A1C /* SceneDelegate.swift */,
-				04A47EA5266121CD00983A1C /* ContentView.swift */,
-				04A47EA7266121CE00983A1C /* Assets.xcassets */,
-				04A47EAC266121CE00983A1C /* LaunchScreen.storyboard */,
-				04A47EAF266121CE00983A1C /* Info.plist */,
+				04A47ED1266122AC00983A1C /* App */,
+				04A47ED42661231B00983A1C /* Core */,
+				04A47ED32661231700983A1C /* Module */,
+				04A47ED2266122E300983A1C /* Supporting Files */,
 				04A47EA9266121CE00983A1C /* Preview Content */,
 			);
 			path = OFO;
@@ -134,6 +134,73 @@
 				04A47EC5266121CF00983A1C /* Info.plist */,
 			);
 			path = OFOUITests;
+			sourceTree = "<group>";
+		};
+		04A47ED1266122AC00983A1C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				04A47EA1266121CD00983A1C /* AppDelegate.swift */,
+				04A47EA3266121CD00983A1C /* SceneDelegate.swift */,
+				04A47EA5266121CD00983A1C /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		04A47ED2266122E300983A1C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04A47EA7266121CE00983A1C /* Assets.xcassets */,
+				04A47EAC266121CE00983A1C /* LaunchScreen.storyboard */,
+				04A47EAF266121CE00983A1C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04A47ED32661231700983A1C /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				04A47ED52661232500983A1C /* Home */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		04A47ED42661231B00983A1C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				04A47ED92661234300983A1C /* Utils */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		04A47ED52661232500983A1C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04A47ED62661232E00983A1C /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04A47ED62661232E00983A1C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04A47ED72661233D00983A1C /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A47ED92661234300983A1C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				04A47EDA2661234A00983A1C /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		04A47EDA2661234A00983A1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A47EA2266121CD00983A1C /* AppDelegate.swift in Sources */,
+				04A47ED82661233D00983A1C /* HomeView.swift in Sources */,
 				04A47EA4266121CD00983A1C /* SceneDelegate.swift in Sources */,
 				04A47EA6266121CD00983A1C /* ContentView.swift in Sources */,
 			);
@@ -440,7 +508,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"OFO/Preview Content\"";
 				DEVELOPMENT_TEAM = SWR83G7DDM;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = OFO/Info.plist;
+				INFOPLIST_FILE = "OFO/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,7 +529,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"OFO/Preview Content\"";
 				DEVELOPMENT_TEAM = SWR83G7DDM;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = OFO/Info.plist;
+				INFOPLIST_FILE = "OFO/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
