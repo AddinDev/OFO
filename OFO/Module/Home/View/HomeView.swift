@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+  @State private var flip: Double = 0.0
+  @State private var imgFlip = true
   
-  @State var flip = true
-  @State var imgFlip = true
+  private let screen = UIScreen.main.bounds
   
   init() {
     let appearance = UINavigationBarAppearance()
@@ -21,8 +22,7 @@ struct HomeView: View {
   
   var body: some View {
     content
-      .navigationBarTitle("Saldo", displayMode: .inline)
-      .navigationBarItems(trailing: flipButton)
+      .navigationBarTitle("Cards", displayMode: .inline)
   }
   
 }
@@ -33,7 +33,7 @@ extension HomeView {
     ZStack {
       Color
         .white
-      VStack {
+      VStack(alignment: .center) {
         card
         spacer
       }
@@ -49,14 +49,21 @@ extension HomeView {
           card2
         }
       }
+      .animation(.linear)
     }
-    .frame(width: 330, height: 200)
+    .frame(width: screen.width - 30, height: 200)
     .padding()
     .rotation3DEffect(
-      flip ? .degrees(0) : .degrees(180),
+      .degrees(flip),
       axis: (x: 0.0, y: 1.0, z: 0.0)
     )
     .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
+    .onTapGesture {
+      flip += 180
+      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+        imgFlip.toggle()
+      }
+    }
   }
   
   var card1: some View {
@@ -115,7 +122,7 @@ extension HomeView {
   
   var flipButton: some View {
     Button(action: {
-      flip.toggle()
+      flip += 180
       DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.2) {
         imgFlip.toggle()
       }
