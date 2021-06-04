@@ -8,21 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
-  @State private var flip: Double = 0.0
-  @State private var imgFlip = true
   
   private let screen = UIScreen.main.bounds
   
-  init() {
-    let appearance = UINavigationBarAppearance()
-    appearance.configureWithTransparentBackground()
-    appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
-    UINavigationBar.appearance().standardAppearance = appearance
-  }
-  
   var body: some View {
     content
-      .navigationBarTitle("Cards", displayMode: .inline)
+      .navigationBarTitle(Text("OFO"), displayMode: .inline)
+      .navigationBarColor(backgroundColor: .init(Color("Purple")), titleColor: .white)
+      .font(.quicksand)
   }
   
 }
@@ -30,115 +23,108 @@ struct HomeView: View {
 extension HomeView {
   
   var content: some View {
-    ZStack {
-      Color
-        .white
-      VStack(alignment: .center) {
-        card
-        spacer
-      }
-    }
-  }
-  
-  var card: some View {
-    Group {
-      ZStack {
-        if imgFlip {
-          card1
-        } else {
-          card2
+    ZStack(alignment: .top) {
+      bg
+      ScrollView {
+        LazyVStack {
+          top
+          topMid
+          
+          // more
+          
+          HomeView.spacer
         }
       }
-      .animation(.linear)
-    }
-    .frame(width: screen.width - 30, height: 200)
-    .padding()
-    .rotation3DEffect(
-      .degrees(flip),
-      axis: (x: 0.0, y: 1.0, z: 0.0)
-    )
-    .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
-    .onTapGesture {
-      flip += 180
-      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
-        imgFlip.toggle()
-      }
     }
   }
   
-  var card1: some View {
-    ZStack {
-      Color(
-        .black)
-        .cornerRadius(10)
-        .shadow(color: .black.opacity(0.8), radius: 8, x: 1, y: 2)
-      HStack {
-        VStack(alignment: .leading) {
-          Text("Addin Santhos")
-            .font(.title)
-          Text("Blue Blood Pass")
-            .font(.title3)
-            .italic()
-          spacer
-          Image(systemName: "crown")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 50)
-          spacer
-          Text("Flip card to see user's spirit animal.")
-            .font(.footnote)
+  var top: some View {
+    HStack {
+      VStack(alignment: .leading) {
+        Text("OFO Cash")
+          .font(.custom("Quicksand-Bold", size: 13))
+        HStack {
+          Text("RP")
+            .font(.custom("Quicksand-Bold", size: 13))
+          Text("26.696")
+            .font(.custom("Quicksand-Bold", size: 24))
         }
-        .padding()
-        spacer
+        Text("OFO Points 0")
+          .font(.custom("Quicksand-SemiBold", size: 13))
+        HomeView.spacer
       }
-      .foregroundColor(.yellow)
+      .foregroundColor(.white)
+      HomeView.spacer
     }
+    .padding(.horizontal)
+    .frame(height: 65)
   }
   
-  var card2: some View {
+  var topMid: some View {
+    HStack {
+      HomeView.spacer
+      CustomActionButton(imageName: "restart.circle", title: "Restart") {
+        
+      }
+      HomeView.spacer
+      CustomActionButton(imageName: "command.circle", title: "Command") {
+        
+      }
+      HomeView.spacer
+      CustomActionButton(imageName: "sleep", title: "Sleep") {
+        
+      }
+      HomeView.spacer
+    }
+    .foregroundColor(.black)
+    .padding(.vertical)
+    .background(Color.white)
+    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+    .padding(.horizontal)
+    .padding(.vertical, 10)
+    .shadow(radius: 2)
+  }
+  
+  var bg: some View {
     ZStack {
-      Color
-        .black
-        .cornerRadius(10)
-        .shadow(color: .yellow.opacity(0.8), radius: 8, x: 1, y: 2)
+      //      Image("purplesupra")
+      //        .resizable()
+      //        .scaledToFill()
+      LinearGradient(gradient: Gradient(colors: [Color("Purple"), Color("Purple").opacity(0.2)]), startPoint: .top, endPoint: .bottom)
+    }
+    .frame(height: 120)
+  }
+  
+}
+
+struct CustomActionButton: View {
+  
+  var imageName: String
+  var title: String
+  var action: () -> Void
+  
+  var body: some View {
+    Button(action: {
+      action()
+    }) {
       VStack {
-        Text("BREAD DOGE")
-          .font(.title)
-          .italic()
-          .padding(.top, 5)
-        Image("doge")
+        Image(systemName: imageName)
           .renderingMode(.original)
           .resizable()
           .scaledToFit()
-          .frame(width: 200)
+          .frame(width: 25)
+        Text(title)
+          .font(.custom("Quicksand-Medium", size: 15))
       }
-      .foregroundColor(.yellow)
     }
-    .rotation3DEffect(
-      .degrees(180),
-      axis: (x: 0.0, y: 1.0, z: 0.0)
-    )
-  }
-  
-  var flipButton: some View {
-    Button(action: {
-      flip += 180
-      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.2) {
-        imgFlip.toggle()
-      }
-    }) {
-      Text("flip")
-    }
-  }
-  
-  var spacer: some View {
-    Spacer()
   }
   
 }
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    NavigationView {
+      HomeView()
+    }
   }
 }
