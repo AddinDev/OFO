@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct Promo: Identifiable {
+  let id = UUID().uuidString
+  let title: String
+  let desc: String
+  let icon: String
+  let color: UIColor
+}
+
 struct HomeView: View {
   
   private let screen = UIScreen.main.bounds
@@ -17,6 +25,20 @@ struct HomeView: View {
     .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20)),
     .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20))
   ]
+  
+  private let promos : [Promo] = [
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black),
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black),
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black),
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black),
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black),
+    Promo(title: "udin", desc: "diskon", icon: "crown", color: .black)
+  ]
+  
+  init() {
+    UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Color("Purple"))
+    UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+  }
   
   var body: some View {
     content
@@ -31,14 +53,16 @@ struct HomeView: View {
 extension HomeView {
   
   var content: some View {
+    ScrollView {
     ZStack(alignment: .top) {
       bg
-      ScrollView {
         LazyVStack {
           saldo
           saldoActions
           upgrade
           actions
+          promo
+          
           // more
           
           HomeView.spacer
@@ -59,7 +83,7 @@ extension HomeView {
             .font(.custom("Quicksand-Bold", size: 24))
         }
         HStack(spacing: 3) {
-        Text("OFO Points ")
+          Text("OFO Points ")
           Text("0")
             .foregroundColor(.yellow)
         }
@@ -92,7 +116,7 @@ extension HomeView {
     .foregroundColor(.black)
     .padding(.vertical, 12)
     .background(Color.white)
-//    .background(BlurView(style: .regular))
+    //    .background(BlurView(style: .regular))
     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     .padding(.horizontal)
     .padding(.vertical, 10)
@@ -129,22 +153,47 @@ extension HomeView {
     ZStack {
       Color.white
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .shadow(color: .black.opacity(0.1), radius: 3, x: 0.0, y: 3)
-
-    LazyVGrid(columns: columns, spacing: 10) {
-      ForEach(0..<8) { i in
-        VStack(spacing: 4) {
-          Image(systemName: "\(i).circle")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 25)
-        Text("\(i)")
+      //        .shadow(color: .black.opacity(0.1), radius: 3, x: 0.0, y: 3)
+      LazyVGrid(columns: columns, spacing: 10) {
+        ForEach(0..<8) { i in
+          VStack(spacing: 4) {
+            Image(systemName: "\(i).circle")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 25)
+            Text("\(i)")
+          }
+        }
       }
+      .padding()
+    }
+    .padding(.horizontal)
+    .padding(.vertical, 8)
+  }
+  
+  var promo: some View {
+    VStack {
+      HStack {
+        Text("Promo")
+        HomeView.spacer
+        Text("Selengkapnya")
       }
+      .padding(.horizontal)
+      
+      ZStack {
+        Color.white
+      TabView {
+        ForEach(promos) { promo in
+          CardView(title: promo.title,
+                   desc: promo.desc,
+                   imgName: promo.icon,
+                   color: promo.color)
+        }
+      }
+      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+      }
+      .frame(height: 260)
     }
-    .padding()
-    }
-    .padding()
   }
   
   var notificationBtn: some View {
@@ -193,6 +242,8 @@ struct CustomActionButton: View {
   }
   
 }
+
+
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {

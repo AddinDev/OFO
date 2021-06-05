@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040C5FC4266BA40E00DC1B26 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C5FC3266BA40E00DC1B26 /* CardView.swift */; };
 		047CA40D266A720700C1418F /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA40C266A720700C1418F /* HostingController.swift */; };
 		047CA40F266A726800C1418F /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CA40E266A726800C1418F /* NavigationBarModifier.swift */; };
 		047CA416266A736600C1418F /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 047CA411266A736500C1418F /* Quicksand-Bold.ttf */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040C5FC3266BA40E00DC1B26 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		047CA40C266A720700C1418F /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		047CA40E266A726800C1418F /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		047CA411266A736500C1418F /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
@@ -96,6 +98,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040C5FC1266BA40300DC1B26 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				040C5FC2266BA40600DC1B26 /* View */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		040C5FC2266BA40600DC1B26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040C5FC3266BA40E00DC1B26 /* CardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		047CA40B266A71F900C1418F /* Controller & Modifier */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				04A47ED62661232E00983A1C /* View */,
+				040C5FC1266BA40300DC1B26 /* Others */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -390,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047CA40D266A720700C1418F /* HostingController.swift in Sources */,
+				040C5FC4266BA40E00DC1B26 /* CardView.swift in Sources */,
 				04D65FC4266B55AE0084399D /* BlurView.swift in Sources */,
 				04A47EA2266121CD00983A1C /* AppDelegate.swift in Sources */,
 				047CA40F266A726800C1418F /* NavigationBarModifier.swift in Sources */,
