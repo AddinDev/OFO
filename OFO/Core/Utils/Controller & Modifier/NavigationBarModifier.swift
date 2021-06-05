@@ -19,9 +19,9 @@ struct NavigationBarModifier: ViewModifier {
     coloredAppearance.backgroundColor = backgroundColor
     
     coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white,
-                                             .font: UIFont(name: "Quicksand-Medium", size: 18) as Any]
+                                             .font: UIFont(name: "Quicksand-Bold", size: 18) as Any]
     coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white,
-                                                  .font: UIFont(name: "Quicksand-Medium", size: 18) as Any]
+                                                  .font: UIFont(name: "Quicksand-Bold", size: 18) as Any]
     
     UINavigationBar.appearance().standardAppearance = coloredAppearance
     UINavigationBar.appearance().compactAppearance = coloredAppearance

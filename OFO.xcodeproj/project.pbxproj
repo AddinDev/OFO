@@ -24,6 +24,7 @@
 		04A47EB9266121CF00983A1C /* OFOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47EB8266121CF00983A1C /* OFOTests.swift */; };
 		04A47EC4266121CF00983A1C /* OFOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47EC3266121CF00983A1C /* OFOUITests.swift */; };
 		04A47ED82661233D00983A1C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A47ED72661233D00983A1C /* HomeView.swift */; };
+		04D65FC4266B55AE0084399D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D65FC3266B55AE0084399D /* BlurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		04A47EC3266121CF00983A1C /* OFOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFOUITests.swift; sourceTree = "<group>"; };
 		04A47EC5266121CF00983A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A47ED72661233D00983A1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		04D65FC3266B55AE0084399D /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				047CA41B266A774700C1418F /* View.swift */,
+				04D65FC3266B55AE0084399D /* BlurView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047CA40D266A720700C1418F /* HostingController.swift in Sources */,
+				04D65FC4266B55AE0084399D /* BlurView.swift in Sources */,
 				04A47EA2266121CD00983A1C /* AppDelegate.swift in Sources */,
 				047CA40F266A726800C1418F /* NavigationBarModifier.swift in Sources */,
 				04A47ED82661233D00983A1C /* HomeView.swift in Sources */,

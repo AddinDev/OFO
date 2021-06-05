@@ -11,10 +11,18 @@ struct HomeView: View {
   
   private let screen = UIScreen.main.bounds
   
+  private let columns: [GridItem] = [
+    .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20)),
+    .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20)),
+    .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20)),
+    .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 4 - 20))
+  ]
+  
   var body: some View {
     content
       .navigationBarTitle(Text("OFO"), displayMode: .inline)
       .navigationBarColor(backgroundColor: .init(Color("Purple")), titleColor: .white)
+      .navigationBarItems(trailing: notificationBtn)
       .font(.quicksand)
   }
   
@@ -27,9 +35,10 @@ extension HomeView {
       bg
       ScrollView {
         LazyVStack {
-          top
-          topMid
-          
+          saldo
+          saldoActions
+          upgrade
+          actions
           // more
           
           HomeView.spacer
@@ -38,7 +47,7 @@ extension HomeView {
     }
   }
   
-  var top: some View {
+  var saldo: some View {
     HStack {
       VStack(alignment: .leading) {
         Text("OFO Cash")
@@ -49,8 +58,12 @@ extension HomeView {
           Text("26.696")
             .font(.custom("Quicksand-Bold", size: 24))
         }
-        Text("OFO Points 0")
-          .font(.custom("Quicksand-SemiBold", size: 13))
+        HStack(spacing: 3) {
+        Text("OFO Points ")
+          Text("0")
+            .foregroundColor(.yellow)
+        }
+        .font(.custom("Quicksand-Bold", size: 13))
         HomeView.spacer
       }
       .foregroundColor(.white)
@@ -60,7 +73,7 @@ extension HomeView {
     .frame(height: 65)
   }
   
-  var topMid: some View {
+  var saldoActions: some View {
     HStack {
       HomeView.spacer
       CustomActionButton(imageName: "restart.circle", title: "Restart") {
@@ -77,12 +90,72 @@ extension HomeView {
       HomeView.spacer
     }
     .foregroundColor(.black)
-    .padding(.vertical)
+    .padding(.vertical, 12)
     .background(Color.white)
+//    .background(BlurView(style: .regular))
     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     .padding(.horizontal)
     .padding(.vertical, 10)
-    .shadow(radius: 2)
+    .shadow(color: .black.opacity(0.1), radius: 3, x: 0.0, y: 3)
+  }
+  
+  var upgrade: some View {
+    HStack {
+      Image(systemName: "circle")
+        .resizable()
+        .scaledToFit()
+        .frame(width:  25)
+        .padding(.trailing , 3)
+      VStack(alignment: .leading) {
+        Text("Upgrade ke OFO Premier")
+          .font(.custom("Quicksand-Bold", size: 15))
+        Text("Dapatkan lebih banyak keuntungan!")
+          .font(.custom("Quicksand-Regular", size: 13))
+      }
+      HomeView.spacer
+      Image(systemName: "chevron.right")
+        .resizable()
+        .scaledToFit()
+        .frame(height:  15)
+    }
+    .foregroundColor(Color("DarkLightGreen"))
+    .padding(12)
+    .background(Color("SoftBlue"))
+    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+    .padding(.horizontal)
+  }
+  
+  var actions: some View {
+    ZStack {
+      Color.white
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .shadow(color: .black.opacity(0.1), radius: 3, x: 0.0, y: 3)
+
+    LazyVGrid(columns: columns, spacing: 10) {
+      ForEach(0..<8) { i in
+        VStack(spacing: 4) {
+          Image(systemName: "\(i).circle")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 25)
+        Text("\(i)")
+      }
+      }
+    }
+    .padding()
+    }
+    .padding()
+  }
+  
+  var notificationBtn: some View {
+    Button(action: {
+      print("noti gang")
+    }) {
+      Image(systemName: "bell.fill")
+        .resizable()
+        .font(.system(size: 18))
+        .foregroundColor(.white)
+    }
   }
   
   var bg: some View {
@@ -107,15 +180,15 @@ struct CustomActionButton: View {
     Button(action: {
       action()
     }) {
-      VStack {
+      VStack(spacing: 5) {
         Image(systemName: imageName)
-          .renderingMode(.original)
           .resizable()
           .scaledToFit()
           .frame(width: 25)
         Text(title)
-          .font(.custom("Quicksand-Medium", size: 15))
+          .font(.custom("Quicksand-Medium", size: 13))
       }
+      .foregroundColor(Color("Purple"))
     }
   }
   
